@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="w-full">
+    <div class=" rounded-lg shadow-md m-2" style="background-color:#F3F7EC;">
+        <div class="p-4 w-50 m-auto">
+            <img src="{{book.image.url}}" class="w-100" alt="Book Image">
+            <h1 class="mb-2">{{book.book_name}}</h1>
+            <p class=" mb-4">{{book.content}}</p>
+            <p class="">Writer: {{book.writer.first_name}} {{book.writer.last_name}}</p>
+            <div class="d-flex flex-wrap gap-3">
+                <p class="">Category:</p>
+                <div class="d-flex  flex-wrap">
+                    {% for cat in book.category.all %}
+                    <button class="btn btn-primary" disabled>
+                        {{cat.name}}
+                    </button>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="d-flex gap-2 mt-3">Borrow price: <p class="card-text fw-bold">{{book.borrow_price}}$</p></div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% block head_title %} My Library {% endblock %}
+{% block content %}
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-8 mx-auto">
+      <div class="card bg-white shadow-lg rounded-xl">
+        <div class="card-body">
+          <h4 class="font-bold text-3xl text-left pb-4">User Id: {{ request.user.customer.customer_iid }}</h4>
+          <a href="{% url 'pass_change' %}" class="btn btn-danger me-2 mb-2">Click to Change Password</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-5">
+    <div class="col-md-8 mx-auto">
+      <div class="card bg-white shadow-lg rounded-xl">
+        <div class="card-body">
+          <h1 class="font-bold text-3xl text-center pb-5 pt-2">Borrow Book Report</h1>
+          <hr>
+
+          <form method="get" action="#">
+            <div class="row mb-3">
+              <div class="col-md-4">
+                <label for="start_date" class="form-label">From:</label>
+                <input type="date" class="form-control" id="start_date" name="start_date">
+              </div>
+              <div class="col-md-4">
+                <label for="end_date" class="form-label">To:</label>
+                <input type="date" class="form-control" id="end_date" name="end_date">
+              </div>
+              <div class="col-md-4 d-flex align-items-end">
+                <button type="submit" class="btn btn-primary">Filter</button>
+              </div>
+            </div>
+          </form>
+
+          <div class="table-responsive">
+            <table class="table table-striped table-bordered mt-4">
+              <thead class="bg-primary text-white">
+                <tr>
+                  <th>Book Name</th>
+                  <th>Borrow Date</th>
+                  <th>Borrow Price</th>
+                  <th>Return Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for book in data %}
+                {%if book.borrow %}
+                <tr>
+                  <td>{{book.title}}</td>
+                  <td>{{ book.borrow_date }}</td>
+                  <td>$ {{ book.borrow_price|floatformat:2|intcomma }}</td>
+                  <td>$ {{ book.return_date|floatformat:2|intcomma }}</td>
+                </tr>
+                {%endif%}
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
