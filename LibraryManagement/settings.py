@@ -113,7 +113,7 @@ WSGI_APPLICATION = 'LibraryManagement.wsgi.application'
 DATABASES = {
     'default': dj_database_url.config(
         # Replace this value with your local database's connection string.
-        default='postgresql://postgresql_9klq_user:LoUC6RHDr6LuWpDPnoIHzxcsFWYurMvK@dpg-cq2bcnbv2p9s73epn74g-a.oregon-postgres.render.com/postgresql_9klqe',
+        default='postgresql://postgresql_9klq_user:LoUC6RHDr6LuWpDPnoIHzxcsFWYurMvK@dpg-cq2bcnbv2p9s73epn74g-a.oregon-postgres.render.com/postgresql_9klq',
     )
 }
 
